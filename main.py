@@ -1,0 +1,32 @@
+from flask import Flask, request, jsonify
+import openai
+import os
+
+app = Flask(__name__)
+
+# Replace this with your actual OpenAI key
+openai.api_key = "sk- proj- CJyTBzPSJ4mgK61WIPclHGt73YulMPrxUckijnE3RKCfrFGv9Qr9_BhNUpt3D9enFAR5yGVdhTT3BlbkFJWjTFnHv9XjXK1tKIyZRvF0DB463bVxMw9qNDV9mkysEtkVMOViWdijVhc39nA0pBxPNPRJVAYA"
+@app.route("/")
+def home():
+    return "Message Guardian API is online."
+@app.route("/analyze", methods=["POST"])
+def analyze():
+    data = request.get_json()
+    message = data.get("message", "")
+    if not message:
+        return jsonify({"error": "No message provided"}), 400
+
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You're a message scanner for suspicious or emotional content."},
+                {"role": "user", "content": message}
+            ]
+        )
+        return jsonify({"result": response.choices[0].message["content"]})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)

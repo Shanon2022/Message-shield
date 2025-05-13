@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 import openai
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS (app)
 # Replace this with your actual OpenAI key
 openai.api_key = "sk- proj- CJyTBzPSJ4mgK61WIPclHGt73YulMPrxUckijnE3RKCfrFGv9Qr9_BhNUpt3D9enFAR5yGVdhTT3BlbkFJWjTFnHv9XjXK1tKIyZRvF0DB463bVxMw9qNDV9mkysEtkVMOViWdijVhc39nA0pBxPNPRJVAYA"
 @app.route("/")

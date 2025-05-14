@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS (app)
 # Replace this with your actual OpenAI key
-openai.api_key = "sk- proj- CJyTBzPSJ4mgK61WIPclHGt73YulMPrxUckijnE3RKCfrFGv9Qr9_BhNUpt3D9enFAR5yGVdhTT3BlbkFJWjTFnHv9XjXK1tKIyZRvF0DB463bVxMw9qNDV9mkysEtkVMOViWdijVhc39nA0pBxPNPRJVAYA"
+openai.api_key = "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"
 @app.route("/")
 def home():
     return "Message Guardian API is online."
